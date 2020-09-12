@@ -10,6 +10,10 @@ These instructions will get you a copy of the project up and running on your loc
 
 In the project directory, you can run:
 
+### `npm install`
+
+Installs dependencies
+
 ### `npm start`
 
 <!-- Runs the app in the development mode.<br />
