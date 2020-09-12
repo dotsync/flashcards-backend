@@ -2,7 +2,7 @@
   "name": "flashcardbackend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -12,5 +12,9 @@
   "devDependencies": {
     "chai": "^4.2.0",
     "mocha": "^8.1.3"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.10.5"
   }
 }
