@@ -10,7 +10,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 In the project directory, you can run:
 
-### `yarn start`
+### `npm start`
 
 <!-- Runs the app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser. -->
@@ -19,12 +19,12 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser. -
 ## Flashcards-backend was created with these technologies:
 *some may not be listed*
 
-* [React](https://reactjs.org/docs) - The web framework used
-* [MaterialUI](https://material-ui.com/getting-started/installation/) - The css framework used
-* [Axios](https://www.npmjs.com/package/axios) - The front-end http request handler
-* [Express](https://expressjs.com/2x/guide.html) - The back-end http request handler
-* [Jest](https://jestjs.io/docs/en/tutorial-react) - The javascript testing framework and code coverage
-* [Enzyme](https://github.com/enzymejs/enzyme) - The javascript testing utility
+* [Mocha](https://mochajs.org/) - Testing framework
+* [Chai](https://www.chaijs.com/) - Testing library
+* [Express](https://expressjs.com/) - Server (client)
+* [Mongoose](https://mongoosejs.com/) - Server (backend)
+* [Node](https://nodejs.org/) - Engine
+* [Mongodb](https://docs.mongodb.com/) - database
 
 ## Contributing
 
