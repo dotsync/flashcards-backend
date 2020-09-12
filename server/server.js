@@ -2,21 +2,20 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const access = require('../access/access');
+const flashcardRoutes = require('./routes/flashcardRoutes.js')
 const app = express();
-// middle ware
+
 app.use(bodyParser.json());
 app.use(express.static('public'));
 
-// routes
+app.use('/flashcards', flashcardRoutes)
 
-// connect to mongoose [incomplete]
 mongoose
-  // _db must be set in access folder
   .connect(access._db, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
-    console.log(`Mongoose succesfully connected to mongo database and ready to comply!`);
+    console.log(`Mongoose succesfully connected to a mongo database and ready to comply!`);
     app.listen(access._local, () => {
-      console.log(`Express succesfully connected to local port and ready to comply!`);
+      console.log(`Express succesfully connected to a local port and ready to comply!`);
     });
   })
   .catch((error) => {
