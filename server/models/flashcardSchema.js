@@ -7,7 +7,8 @@ const flashcardSchema = new Schema({
   category: {type: String},
   subject: {type: String},
   question: {type: String},
-  answer: {type: String}
+  answer: {type: String},
+  amountOfFlips: {type: String}
 })
 
 module.exports = mongoose.model('Flashcard', flashcardSchema);
