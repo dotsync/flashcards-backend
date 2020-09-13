@@ -3,7 +3,6 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const flashcardSchema = new Schema({
-  flashcardId: { type: Number, required: true },
   createdAt: { type: String, required: true },
   catagory: { type: String, required: true },
   subject: { type: String, required: true },
