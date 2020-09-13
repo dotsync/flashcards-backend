@@ -2,7 +2,10 @@ const express = require('express');
 const flashcardControllers = require('../controllers/flashcardControllers')
 const router = express.Router();
 
-// gets all flash cards
+// retrieve a list of all all flash cards
 router.get('/list', flashcardControllers.getFlashcards);
+// create a single flash card and add it to the list
+router.post('/list', flashcardControllers.createFlashcards);
+
 
 module.exports = router
