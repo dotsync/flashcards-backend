@@ -1,9 +1,12 @@
+/* eslint-disable no-console */
+/* eslint-disable no-underscore-dangle */
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const access = require('../access/access');
-const flashcardSchema = require('./models/flashcardSchema')
+// const flashcardSchema = require('./models/flashcardSchema');
 const flashcardRoutes = require('./routes/flashcardRoutes.js');
+
 const app = express();
 
 app.use(bodyParser.json());
@@ -14,7 +17,7 @@ app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader(
     'Access-Control-Allow-Headers',
-    'Origin, X-Requested-With, Content-Type, Accept, Authorization'
+    'Origin, X-Requested-With, Content-Type, Accept, Authorization',
   );
   res.setHeader('Acces-Control-Allow-Methods', 'GET, POST, PATCH, DELETE');
   next();
@@ -22,22 +25,22 @@ app.use((req, res, next) => {
 // err handler
 app.use((err, req, res, next) => {
   if (res.headerSent) {
-    return next(err);
+    next(err);
   }
   res.status(err.code || 500);
   res.json({ message: err.message || 'Something strange happend' });
 });
 
-app.use('/flashcards', flashcardRoutes)
+app.use('/flashcards', flashcardRoutes);
 
 mongoose
   .connect(access._db, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
-    console.log(`Mongoose succesfully connected to a mongo database and ready to comply!`);
+    console.log('Mongoose succesfully connected to a mongo database and ready to comply!');
     app.listen(access._local, () => {
-      console.log(`Express succesfully connected to a local port and ready to comply!`);
+      console.log('Express succesfully connected to a local port and ready to comply!');
     });
   })
   .catch((error) => {
     console.log(`Error was encountered the db: ${error}`);
-  })
+  });
