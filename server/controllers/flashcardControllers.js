@@ -16,15 +16,25 @@ const getFlashcards = async (req, res) => {
 };
 // create a flashcard and store it on the server
 const createFlashcard = async (req, res) => {
-  // connect to db
+  // pull data from client
+  const { flashcard_id, createdAt, category, subject, question, answer, amountOfFlips } = req.body
   // create flashcard
+  const createdFlashcard = new Flashcard({
+    flashcard_id,
+    createdAt,
+    category,
+    subject,
+    question,
+    answer,
+    amountOfFlips,
+  })
   try {
     // save flashcard to db
+    const response = await createdFlashcard.save();
+    res.json(response)
   } catch (err) {
     console.log(err)
   }
-  // close connection to db
-  // respond to client
 }
 
 // export controllers to routes
@@ -32,14 +42,3 @@ module.exports = {
   getFlashcards,
   createFlashcard,
 }
-/* example data
-{
-  flashcard_id: {type: String},
-  createdAt: {type: String},
-  category: {type: String},
-  subject: {type: String},
-  question: {type: String},
-  answer: {type: String},
-  amountOfFlips: {type: String}
-}
-*/
