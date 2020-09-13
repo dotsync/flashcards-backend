@@ -2,7 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const access = require('../access/access');
-const flashcardRoutes = require('./routes/flashcardRoutes.js')
+const flashcardSchema = require('./models/flashcardSchema')
+const flashcardRoutes = require('./routes/flashcardRoutes.js');
 const app = express();
 
 app.use(bodyParser.json());
@@ -15,9 +16,17 @@ app.use((req, res, next) => {
     'Access-Control-Allow-Headers',
     'Origin, X-Requested-With, Content-Type, Accept, Authorization'
   );
-  res.setHeader('cces-Control-Allow-Methods', 'GET, POST, PATCH, DELETE');
+  res.setHeader('Acces-Control-Allow-Methods', 'GET, POST, PATCH, DELETE');
   next();
-})
+});
+// err handler
+app.use((err, req, res, next) => {
+  if (res.headerSent) {
+    return next(err);
+  }
+  res.status(err.code || 500);
+  res.json({ message: err.message || 'Something strange happend' });
+});
 
 app.use('/flashcards', flashcardRoutes)
 
