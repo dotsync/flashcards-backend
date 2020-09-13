@@ -16,24 +16,27 @@ const getFlashcards = async (req, res) => {
 };
 // create a flashcard and store it on the server
 const createFlashcard = async (req, res) => {
+  console.log('CLIENT SENDING REQUEST TO STORE FLASHCARD ON DB: req.body -->', req.body);
+  const date = new Date();
   // pull data from client
   const {
-    flashcardId, createdAt, category, subject, question, answer, amountOfFlips,
+    catagory, subject, question, answer,
   } = req.body;
   // create flashcard
   const createdFlashcard = new Flashcard({
-    flashcardId,
-    createdAt,
-    category,
+    flashcardId: 999999,
+    createdAt: date,
+    catagory,
     subject,
     question,
     answer,
-    amountOfFlips,
+    amountOfFlips: 0,
   });
   try {
     // save flashcard to db
     const response = await createdFlashcard.save();
     res.json(response);
+    console.log('DB IS RESPONDING TO REQUEST TO CLIENT', response);
   } catch (err) {
     console.log(err);
   }
