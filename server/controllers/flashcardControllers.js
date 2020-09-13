@@ -24,7 +24,6 @@ const createFlashcard = async (req, res) => {
   } = req.body;
   // create flashcard
   const createdFlashcard = new Flashcard({
-    flashcardId: 999999,
     createdAt: date,
     catagory,
     subject,
