@@ -24,7 +24,6 @@ const createFlashcard = async (req, res) => {
   } = req.body;
   // create flashcard
   const createdFlashcard = new Flashcard({
-    flashcardId: 999999,
     createdAt: date,
     catagory,
     subject,
@@ -41,9 +40,21 @@ const createFlashcard = async (req, res) => {
     console.log(err);
   }
 };
+// delete a flashcard from the list
+const deleteFlashcard = async (req, res) => {
+  const flashcardId = req.params.id;
+  try {
+    await Flashcard.findByIdAndRemove(flashcardId);
+    console.log('---REQPARAMS PARAM PARAM-----req', req.params.id);
+  } catch (err) {
+    console.log(err);
+  }
+  res.sendStatus(200);
+};
 
 // export controllers to routes
 module.exports = {
   getFlashcards,
   createFlashcard,
+  deleteFlashcard,
 };
