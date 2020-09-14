@@ -1,9 +1,9 @@
 /* eslint-disable no-console */
 /* eslint-disable camelcase */
 
-// import flashcard model
+// // import flashcard model
+// const mongoose = require('mongoose');
 const Flashcard = require('../models/flashcardSchema');
-
 // get a list of all flashcards from the db
 const getFlashcards = async (req, res) => {
   try {
@@ -42,14 +42,23 @@ const createFlashcard = async (req, res) => {
 };
 // delete a flashcard from the list
 const deleteFlashcard = async (req, res) => {
-  const flashcardId = req.params.id;
-  try {
-    await Flashcard.findByIdAndRemove(flashcardId);
-    console.log('---REQPARAMS PARAM PARAM-----req', req.params.id);
-  } catch (err) {
-    console.log(err);
+  // // check if id is object
+  // let flashcard;
+  // const flashcardId = req.params.id;
+  if (typeof flashcardId === 'string') {
+    console.log('deleteFlashcard:SERVER:req.params.id', req.params.id);
   }
-  res.sendStatus(200);
+  try {
+    // // flashcard = await Flashcard.findById(req.params.id);
+    // console.log('---REQPARAMS PARAM PARAM-----req', req.params);
+    // console.log('---REQPARAMS PARAM PARAM-----req', typeof req.params.id);
+    // console.log('This is the flash card i found using findById', flashcard);
+    const response = await Flashcard.findByIdAndRemove(req.params.id);
+    console.log('DB IS RESPONDING TO CLIENTS REQUEST TO DELETE', response);
+    if (!response) { res.sendStatus(500).send({ message: ' Could not delete' }); } else { res.sendStatus(200); }
+  } catch (err) {
+    console.log('Error trying to delete flashcard by id', err);
+  }
 };
 
 // export controllers to routes

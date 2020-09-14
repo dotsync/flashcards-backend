@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 /* eslint-disable no-underscore-dangle */
 const express = require('express');
+const cors = require('cors');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const access = require('../access/access');
@@ -9,6 +10,7 @@ const flashcardRoutes = require('./routes/flashcardRoutes.js');
 
 const app = express();
 
+app.use(cors());
 app.use(bodyParser.json());
 app.use(express.static('public'));
 
@@ -34,7 +36,7 @@ app.use((err, req, res, next) => {
 app.use('/flashcards', flashcardRoutes);
 
 mongoose
-  .connect(access._db, { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect(access._db, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
   .then(() => {
     console.log('Mongoose succesfully connected to a mongo database and ready to comply!');
     app.listen(access._local, () => {
