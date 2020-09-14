@@ -55,7 +55,7 @@ const deleteFlashcard = async (req, res) => {
     // console.log('This is the flash card i found using findById', flashcard);
     const response = await Flashcard.findByIdAndRemove(req.params.id);
     console.log('DB IS RESPONDING TO CLIENTS REQUEST TO DELETE', response);
-    if (!response) { res.sendStatus(500).send(err); } else { res.sendStatus(200); }
+    if (!response) { res.sendStatus(500).send({ message: ' Could not delete' }); } else { res.sendStatus(200); }
   } catch (err) {
     console.log('Error trying to delete flashcard by id', err);
   }
