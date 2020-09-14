@@ -9,6 +9,6 @@ router.get('/list', flashcardControllers.getFlashcards);
 // create a single flashcard and add it to the list
 router.post('/list', flashcardControllers.createFlashcard);
 // delete a single flashcard by finding its' id
-router.delete('/list/:id', flashcardControllers.deleteFlashcard);
+router.delete('/:id', flashcardControllers.deleteFlashcard);
 
 module.exports = router;
