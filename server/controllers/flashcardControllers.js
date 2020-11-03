@@ -16,7 +16,7 @@ const getFlashcards = async (req, res) => {
 };
 // create a flashcard and store it on the server
 const createFlashcard = async (req, res) => {
-  console.log('CLIENT SENDING REQUEST TO STORE FLASHCARD ON DB: req.body -->', req.body);
+  console.log('Client sending request to store flashcard on DB: req.body :', req.body);
   const date = new Date();
   // pull data from client
   const {
@@ -35,26 +35,16 @@ const createFlashcard = async (req, res) => {
     // save flashcard to db
     const response = await createdFlashcard.save();
     res.json(response);
-    console.log('DB IS RESPONDING TO REQUEST TO CLIENT', response);
+    console.log('DB is responding to clients request to post flashcard', response);
   } catch (err) {
     console.log(err);
   }
 };
 // delete a flashcard from the list
 const deleteFlashcard = async (req, res) => {
-  // // check if id is object
-  // let flashcard;
-  // const flashcardId = req.params.id;
-  if (typeof flashcardId === 'string') {
-    console.log('deleteFlashcard:SERVER:req.params.id', req.params.id);
-  }
   try {
-    // // flashcard = await Flashcard.findById(req.params.id);
-    // console.log('---REQPARAMS PARAM PARAM-----req', req.params);
-    // console.log('---REQPARAMS PARAM PARAM-----req', typeof req.params.id);
-    // console.log('This is the flash card i found using findById', flashcard);
     const response = await Flashcard.findByIdAndRemove(req.params.id);
-    console.log('DB IS RESPONDING TO CLIENTS REQUEST TO DELETE', response);
+    console.log('DB is responding to clients request to delete flashcard', response);
     if (!response) { res.sendStatus(500).send({ message: ' Could not delete' }); } else { res.sendStatus(200); }
   } catch (err) {
     console.log('Error trying to delete flashcard by id', err);
